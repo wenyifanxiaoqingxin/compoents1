@@ -4,7 +4,7 @@ var opts = {
     items_per_page: 10,
     current_page: 0
 };
-
+var typeStr = ""
 $(function(){
     $('.aboutMe_00').attr("class", "nav-item start active open");
 
@@ -14,8 +14,13 @@ $(function(){
     //进入页面时加载第一页数据 并初始化分页控件
     queryData(opts.current_page + 1,opts.items_per_page)
 
+    $('#submitEditBtn').on('click',function(){
+        submitFunction('/compoent/change')
+    })
 
-
+    $('#submitBtn').on('click',function(){
+        submitFunction('/compoent/insert')
+    })
 })
 
 
@@ -67,6 +72,7 @@ var showDate= function(){
 // }
 //
 var queryData = function(page,size){
+    typeStr = $("#compoentType").val()
     var url = '/compoent/data'
     $.ajax({
         url: url,
@@ -75,7 +81,7 @@ var queryData = function(page,size){
         data:{
             // 需要传到后台的值，可带参进行分页
             name:$("#compoentName").val(),
-            type:$("#compoentType").val(),
+            type:typeStr,
             pageNumber: page,
             pageSize: size
         },
@@ -90,6 +96,10 @@ var queryData = function(page,size){
                     html += ('<td nowrap="nowrap">'+content[i].name+'</td>')
                     html += ('<td nowrap="nowrap">'+content[i].type+'</td>')
                     html += ('<td nowrap="nowrap">'+content[i].introduce+'</td>')
+                    html += ('<td nowrap="nowrap">')
+                    html += ('<div class="ui primary button" onclick="delate(\''+content[i].id+'\')">删除</div>')
+                    html += ('<div class="ui primary button" onclick="edit(\''+content[i].id+'\')">修改</div>')
+                    html += ('</td>')
                     html += '</tr>'
                 }
                 $('#content').append(html)
@@ -105,6 +115,51 @@ var queryData = function(page,size){
     });
 }
 
+var edit = function(id){
+    var url ="/compoent/findOne/" + id;
+    $.ajax({
+        url:url,
+        type: 'post',
+        dataType: 'json',
+        success: function(data){
+            $('#edit')
+                .modal('setting', 'closable', false)
+                .modal('show');
+            if($('.modal').hasClass('scrolling')===false) {
+                $('#edit').addClass('scrolling');
+            }
+            if(data.code == '0000'){
+                var result = data.data;
+                for(var i in result){
+                    $("#programId").val(result[i].id),
+                        $("#editCompoentType").val(result[i].type),
+                        $("#editCompoentName").val(result[i].name),
+                        $("#editIntroduce").val(result[i].introduce)
+                }
+
+            }else {
+                cautionModal(data.message)
+            }
+        }
+    })
+}
+
+var delate = function(id){
+    var url ="/compoent/delete/"+id
+    $.ajax({
+        url: url,
+        type: 'post',
+        dataType: 'json',
+        success: function(data){
+            if (data.code == '0000'){
+                cautionModal("删除成功")
+                queryData(opts.current_page + 1,opts.items_per_page)
+            }else{
+                cautionModal(data.message)
+            }
+        }
+    })
+}
 var queryBtn = function(){
     queryData(1,10)
 }
@@ -114,55 +169,92 @@ var addBtn = function () {
     ;
 }
 
-var submit = function () {
-
-    submitFunction("/compoent/insert");
-}
-
-
 var submitFunction = function (url) {
 
-    $.ajax({
-        url: url,
-        type: 'post',
-        dataType: 'json',
-        data: {
-            type:$("#addCompoentType").val(),
-            name:$("#addCompoentName").val(),
-            introduce:$("#addIntroduce").val(),
-        },
-        success: function (data) {
-            if(data.code==0000){
-                $('#add')
-                    .modal('hide')
-                ;
-                $('#contentText').text("新增成功")
-                $('#cautionModal')
-                    .modal('show')
-                ;
-                $.ajax({
-                    url: '/compoent/queryType',
-                    type: 'post',
-                    dataType: 'json',
-                    data: {
-                    },
-                    success: function (data) {
-                        if(data.code==0000){
-                            var selectValue =  $("#compoentType")
-                            selectValue.empty()
-                            var contents = data.data
-                            for(var i=0; i<contents.length;i++){
-                                var option ="<option value='"+contents[i]+"'>"+contents[i]+"</option>"
-                                selectValue.append(option)
+    if(url =="/compoent/insert"){
+        $.ajax({
+            url: url,
+            type: 'post',
+            dataType: 'json',
+            data: {
+                type:$("#addCompoentType").val(),
+                name:$("#addCompoentName").val(),
+                introduce:$("#addIntroduce").val(),
+            },
+            success: function (data) {
+                if(data.code==0000){
+                    $('#add')
+                        .modal('hide')
+                    ;
+                    cautionModal("操作成功")
+                    $.ajax({
+                        url: '/compoent/queryType',
+                        type: 'post',
+                        dataType: 'json',
+                        data: {
+                        },
+                        success: function (data) {
+                            if(data.code==0000){
+                                var selectValue =  $("#compoentType")
+                                selectValue.empty()
+                                var contents = data.data
+                                for(var i=0; i<contents.length;i++){
+                                    var option ="<option value='"+contents[i]+"'>"+contents[i]+"</option>"
+                                    selectValue.append(option)
+                                }
+                                $("#compoentType").dropdown('set selected',typeStr)
                             }
                         }
-                    }
-                });
-                $("#addForm").form('clear');
-                queryData( 1,opts.items_per_page)
+                    });
+                    $("#addForm").form('clear');
+                    queryData( opts.current_page + 1,opts.items_per_page)
+                }
             }
-        }
-    });
+        });
+
+    }else{
+        $.ajax({
+            url: url,
+            type: 'post',
+            dataType: 'json',
+            data: {
+                id:$("#programId").val(),
+                type:$("#editCompoentType").val(),
+                name:$("#editCompoentName").val(),
+                introduce:$("#editIntroduce").val()
+            },
+            success: function (data) {
+                if(data.code==0000){
+                    $('#add')
+                        .modal('hide')
+                    ;
+                    cautionModal("操作成功")
+                    $.ajax({
+                        url: '/compoent/queryType',
+                        type: 'post',
+                        dataType: 'json',
+                        data: {
+                        },
+                        success: function (data) {
+                            if(data.code==0000){
+                                var selectValue =  $("#compoentType")
+                                selectValue.empty()
+                                var contents = data.data
+                                for(var i=0; i<contents.length;i++){
+                                    var option ="<option value='"+contents[i]+"'>"+contents[i]+"</option>"
+                                    selectValue.append(option)
+                                }
+                                $("#compoentType").dropdown('set selected',typeStr)
+                            }
+                        }
+                    });
+                    $("#editForm").form('clear');
+                    queryData( opts.current_page +1,opts.items_per_page)
+                }
+            }
+        });
+    }
+
 
 
 }
@@ -174,6 +266,11 @@ var hideCautionModal = function () {
 }
 var cancleBtn = function () {
     $('#add')
+        .modal('hide')
+    ;
+}
+var cancleEditBtn = function () {
+    $('#edit')
         .modal('hide')
     ;
 }

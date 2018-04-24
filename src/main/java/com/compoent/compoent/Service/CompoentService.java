@@ -16,7 +16,7 @@ public interface CompoentService {
 
     int insertOne(ComponeCnt componeCnt);
 
-    ComponeCnt queryOne(String id);
+    List<ComponeCnt> queryOne(String id);
 
     int deleteOne(String id);
 

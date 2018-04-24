@@ -50,8 +50,12 @@ public class CompoentServiceImpl implements CompoentService{
     }
 
     @Override
-    public ComponeCnt queryOne(String id) {
-        return componeCntMapper.selectByPrimaryKey(id);
+    public List<ComponeCnt> queryOne(String id) {
+        ComponeCntExample componeCntExample = new ComponeCntExample();
+
+        componeCntExample.createCriteria().andIdEqualTo(id);
+        List<ComponeCnt> componeCnts = componeCntMapper.selectByExample(componeCntExample);
+        return componeCnts;
     }
 
     @Override

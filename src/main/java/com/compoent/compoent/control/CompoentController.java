@@ -67,8 +67,8 @@ public class CompoentController {
         ReturnData returnData = new ReturnData();
 
         try {
-            ComponeCnt componeCnt = compoentService.queryOne(id);
-            returnData.setData(componeCnt);
+            List<ComponeCnt> componeCnts = compoentService.queryOne(id);
+            returnData.setData(componeCnts);
             returnData.setCode(ReturnData.RESULT_CODE_0000);
             returnData.setMessage("查询成功");
         }catch (Exception e){
