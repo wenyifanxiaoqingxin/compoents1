@@ -1,4 +1,4 @@
-package com.compoent.compoent.entity;
+package com.compoent.entity;
 
 import java.util.ArrayList;
 import java.util.List;

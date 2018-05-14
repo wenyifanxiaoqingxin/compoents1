@@ -1,4 +1,4 @@
-package com.compoent.compoent.common;
+package com.compoent.common;
 
 import java.io.Serializable;
 

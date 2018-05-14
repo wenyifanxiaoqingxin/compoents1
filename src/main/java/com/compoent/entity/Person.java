@@ -1,4 +1,4 @@
-package com.compoent.compoent.entity;
+package com.compoent.entity;
 
 public class Person {
     private String id;

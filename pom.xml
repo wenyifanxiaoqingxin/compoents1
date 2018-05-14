@@ -24,8 +24,8 @@
 		<java.version>1.8</java.version>
 
 		<targetJavaProject>src/main/java</targetJavaProject>
-		<targetMapperPackage>com.compoent.compoent.dao</targetMapperPackage>
-		<targetModelPackage>com.compoent.compoent.entity</targetModelPackage>
+		<targetMapperPackage>com.compoent.dao</targetMapperPackage>
+		<targetModelPackage>com.compoent.entity</targetModelPackage>
 		<targetResourcesProject>src/main/resources</targetResourcesProject>
 		<targetXMLPackage>mapping</targetXMLPackage>
 	</properties>

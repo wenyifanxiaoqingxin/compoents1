@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.compoent.compoent.dao.ComponeCntMapper">
-  <resultMap id="BaseResultMap" type="com.compoent.compoent.entity.ComponeCnt">
+<mapper namespace="com.compoent.dao.ComponeCntMapper">
+  <resultMap id="BaseResultMap" type="com.compoent.entity.ComponeCnt">
     <!--
       WARNING - @mbg.generated
     -->
@@ -9,6 +9,9 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="type" jdbcType="VARCHAR" property="type" />
     <result column="introduce" jdbcType="VARCHAR" property="introduce" />
+    <result column="classify" jdbcType="VARCHAR" property="classify" />
+    <result column="numbers" jdbcType="INTEGER" property="numbers" />
+    <result column="extr1" jdbcType="VARCHAR" property="extr1" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--
@@ -46,9 +49,9 @@
     <!--
       WARNING - @mbg.generated
     -->
-    id, name, type, introduce
+    id, name, type, introduce, classify, numbers, extr1
   </sql>
-  <select id="countByExample" parameterType="com.compoent.compoent.entity.ComponeCntExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.compoent.entity.ComponeCntExample" resultType="java.lang.Long">
     <!--
       WARNING - @mbg.generated
     -->
@@ -61,6 +64,5 @@
     SELECT TYPE FROM component group by TYPE ;
 
   </select>
-
 
 </mapper>

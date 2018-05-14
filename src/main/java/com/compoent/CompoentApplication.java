@@ -1,11 +1,11 @@
-package com.compoent.compoent;
+package com.compoent;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan(basePackages = "com.compoent.compoent.dao")
+@MapperScan(basePackages = "com.compoent.dao")
 public class CompoentApplication {
 
 	public static void main(String[] args) {

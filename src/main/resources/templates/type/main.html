@@ -3,7 +3,7 @@
     <div class="page-bar">
         <ul class="page-breadcrumb">
             <li>
-                <a href="/index">元器件管理</a>
+                <a href="/index">元器件分类管理</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
@@ -33,6 +33,7 @@
 
                     <div class="sizer content_header">
                         <form class="ui form">
+
                         </form>
 
                         <div>
@@ -43,32 +44,17 @@
                             </a>
                             <div class="ui divider"></div>
                             <form class="ui form">
-                                <div class="four fields">
+                                <div class="two fields">
                                     <div class="field" style="text-align: left;">
                                         <label style="font-size: small">元器件分类:</label>
                                         <div class="field">
-                                            <select class="ui search selection  dropdown" id="compoentClassify">
-                                                <div th:each="arrayS:${classifyList}">
+                                            <select class="ui search selection  dropdown" id="compoentType">
+                                                <div th:each="arrayS:${typeList}">
                                                     <option th:text="${arrayS.typeName}" th:value="${arrayS.id}"></option>
                                                 </div>
                                             </select>
 
                                         </div>
-                                    </div>
-                                    <div class="field" style="text-align: left;">
-                                        <label style="font-size: small">元器件种类:</label>
-                                        <div class="field">
-                                            <select class="ui search selection  dropdown" id="compoentType">
-                                                <div th:each="types:${typeList}">
-                                                    <option th:text="${types.typeName}" th:value="${types.id}"></option>
-                                                </div>
-                                            </select>
-
-                                        </div>
-                                    </div>
-                                    <div class="field" style="text-align: left;">
-                                        <label style="font-size: small">元器件名称：</label>
-                                        <input placeholder="元器件名称" type="text" name="name" id="compoentName" />
                                     </div>
 
                                     <div class="field" style="text-align: right;">
@@ -78,18 +64,18 @@
 
                                     </div>
                                 </div>
+                                <!--<div class="field" style="text-align: right;">-->
+                                <!--<label style="font-size: small">&nbsp;</label>-->
+                                <!--&lt;!&ndash;<div class="ui primary button" id="addSubmit" onclick="queryBtn()">查询</div>&ndash;&gt;-->
+                                <!--<div class="ui primary button" id="addSubmitBtn" onclick="addBtn()">新增</div>-->
+
+                                <!--</div>-->
                             </form>
 
                             <table class="ui five column table">
                                 <thead>
                                 <tr>
-
-                                    <th >名称</th>
-                                    <th >
-                                        类型
-                                    </th>
-                                    <th >简介</th>
-                                    <th >剩余数目</th>
+                                    <th >种类名称</th>
                                     <th >操作</th>
                                 </tr>
                                 </thead>
@@ -114,9 +100,9 @@
             </div>
         </div>
     </div>
-    <div th:include="index/add :: add" class="hiddenTv"></div>
-    <div th:include="index/edit :: edit" class="hiddenTv"></div>
-    <script th:src="@{/js/index/index.js}"></script>
+    <div th:include="type/add :: add" class="hiddenTv"></div>
+    <div th:include="type/edit :: edit" class="hiddenTv"></div>
+    <script th:src="@{/js/type/index.js}"></script>
     <script src="../js/jquery.pagination.js"></script>
 
 </div>

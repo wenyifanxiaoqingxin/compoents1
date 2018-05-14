@@ -1,0 +1,33 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="add" id="addModel">
+    <div class="ui mini modal caution" id="add" style="margin-bottom: 20%;width: 600px;height: 400px;overflow: hidden">
+        <div class="header">
+            新增元器件种类
+        </div>
+        <div class="sizer content_header" style="margin-left: 5%;margin-right: 5%;margin-top:5%;">
+        <form class="ui form" id="addForm">
+
+            <div class="field" style="text-align: left;">
+                <label style="font-size: small">元器件分类:</label>
+                <div class="field">
+                    <select class="ui search selection  dropdown" id="addCompoentClassify">
+                        <div th:each="arrayS:${typeList}">
+                            <option th:text="${arrayS.typeName}" th:value="${arrayS.id}"></option>
+                        </div>
+                    </select>
+
+                </div>
+            </div>
+            <div class="field" style="text-align: left;">
+                <label style="font-size: small">元器件种类名称：</label>
+                <input placeholder="元器件种类名称" type="text" name="name" id="addCompoentName" />
+            </div>
+
+        </form>
+        <div class="actions">
+            <div id ="submitBtn" class="ui primary button" >提交</div>
+            <div class="ui primary button"  onclick="cancleBtn()">取消</div>
+        </div>
+        </div>
+    </div>
+</div>

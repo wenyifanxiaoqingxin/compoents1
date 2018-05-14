@@ -1,10 +1,10 @@
-package com.compoent.compoent.Service.Impl;
+package com.compoent.Service.Impl;
 
-import com.compoent.compoent.Service.CompoentService;
-import com.compoent.compoent.Vo.CompoentVo;
-import com.compoent.compoent.dao.ComponeCntMapper;
-import com.compoent.compoent.entity.ComponeCnt;
-import com.compoent.compoent.entity.ComponeCntExample;
+import com.compoent.Service.CompoentService;
+import com.compoent.Vo.CompoentVo;
+import com.compoent.dao.ComponeCntMapper;
+import com.compoent.entity.ComponeCnt;
+import com.compoent.entity.ComponeCntExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +33,10 @@ public class CompoentServiceImpl implements CompoentService{
 
             criteria.andTypeEqualTo(compoentVo.getType());
         }
+        if(!"".equals(compoentVo.getClassify())&&compoentVo.getClassify()!=null){
 
+            criteria.andClassifyEqualTo(compoentVo.getClassify());
+        }
 
         return componeCntMapper.selectByExample(componeCntExample);
     }

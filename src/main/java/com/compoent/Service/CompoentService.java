@@ -1,7 +1,7 @@
-package com.compoent.compoent.Service;
+package com.compoent.Service;
 
-import com.compoent.compoent.Vo.CompoentVo;
-import com.compoent.compoent.entity.ComponeCnt;
+import com.compoent.Vo.CompoentVo;
+import com.compoent.entity.ComponeCnt;
 
 import java.util.List;
 

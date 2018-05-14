@@ -1,4 +1,4 @@
-package com.compoent.compoent.Vo;
+package com.compoent.Vo;
 
 /**
  * Created by fx on 2018/1/2.
@@ -10,11 +10,13 @@ public class CompoentVo {
      */
     private String name;
 
+    private String id;
     /**
      * 类型
      */
     private String type;
 
+    private String classify;
 
     private  String pageNumber;
 
@@ -50,5 +52,21 @@ public class CompoentVo {
 
     public void setPageSize(String pageSize) {
         this.pageSize = pageSize;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getClassify() {
+        return classify;
+    }
+
+    public void setClassify(String classify) {
+        this.classify = classify;
     }
 }

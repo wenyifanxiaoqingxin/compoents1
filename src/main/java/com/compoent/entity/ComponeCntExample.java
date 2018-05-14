@@ -1,4 +1,4 @@
-package com.compoent.compoent.entity;
+package com.compoent.entity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -381,6 +381,206 @@ public class ComponeCntExample {
 
         public Criteria andIntroduceNotBetween(String value1, String value2) {
             addCriterion("introduce not between", value1, value2, "introduce");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassifyIsNull() {
+            addCriterion("classify is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassifyIsNotNull() {
+            addCriterion("classify is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassifyEqualTo(String value) {
+            addCriterion("classify =", value, "classify");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassifyNotEqualTo(String value) {
+            addCriterion("classify <>", value, "classify");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassifyGreaterThan(String value) {
+            addCriterion("classify >", value, "classify");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassifyGreaterThanOrEqualTo(String value) {
+            addCriterion("classify >=", value, "classify");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassifyLessThan(String value) {
+            addCriterion("classify <", value, "classify");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassifyLessThanOrEqualTo(String value) {
+            addCriterion("classify <=", value, "classify");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassifyLike(String value) {
+            addCriterion("classify like", value, "classify");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassifyNotLike(String value) {
+            addCriterion("classify not like", value, "classify");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassifyIn(List<String> values) {
+            addCriterion("classify in", values, "classify");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassifyNotIn(List<String> values) {
+            addCriterion("classify not in", values, "classify");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassifyBetween(String value1, String value2) {
+            addCriterion("classify between", value1, value2, "classify");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassifyNotBetween(String value1, String value2) {
+            addCriterion("classify not between", value1, value2, "classify");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumbersIsNull() {
+            addCriterion("numbers is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumbersIsNotNull() {
+            addCriterion("numbers is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumbersEqualTo(Integer value) {
+            addCriterion("numbers =", value, "numbers");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumbersNotEqualTo(Integer value) {
+            addCriterion("numbers <>", value, "numbers");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumbersGreaterThan(Integer value) {
+            addCriterion("numbers >", value, "numbers");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumbersGreaterThanOrEqualTo(Integer value) {
+            addCriterion("numbers >=", value, "numbers");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumbersLessThan(Integer value) {
+            addCriterion("numbers <", value, "numbers");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumbersLessThanOrEqualTo(Integer value) {
+            addCriterion("numbers <=", value, "numbers");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumbersIn(List<Integer> values) {
+            addCriterion("numbers in", values, "numbers");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumbersNotIn(List<Integer> values) {
+            addCriterion("numbers not in", values, "numbers");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumbersBetween(Integer value1, Integer value2) {
+            addCriterion("numbers between", value1, value2, "numbers");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumbersNotBetween(Integer value1, Integer value2) {
+            addCriterion("numbers not between", value1, value2, "numbers");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtr1IsNull() {
+            addCriterion("extr1 is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtr1IsNotNull() {
+            addCriterion("extr1 is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtr1EqualTo(String value) {
+            addCriterion("extr1 =", value, "extr1");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtr1NotEqualTo(String value) {
+            addCriterion("extr1 <>", value, "extr1");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtr1GreaterThan(String value) {
+            addCriterion("extr1 >", value, "extr1");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtr1GreaterThanOrEqualTo(String value) {
+            addCriterion("extr1 >=", value, "extr1");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtr1LessThan(String value) {
+            addCriterion("extr1 <", value, "extr1");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtr1LessThanOrEqualTo(String value) {
+            addCriterion("extr1 <=", value, "extr1");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtr1Like(String value) {
+            addCriterion("extr1 like", value, "extr1");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtr1NotLike(String value) {
+            addCriterion("extr1 not like", value, "extr1");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtr1In(List<String> values) {
+            addCriterion("extr1 in", values, "extr1");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtr1NotIn(List<String> values) {
+            addCriterion("extr1 not in", values, "extr1");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtr1Between(String value1, String value2) {
+            addCriterion("extr1 between", value1, value2, "extr1");
+            return (Criteria) this;
+        }
+
+        public Criteria andExtr1NotBetween(String value1, String value2) {
+            addCriterion("extr1 not between", value1, value2, "extr1");
             return (Criteria) this;
         }
     }

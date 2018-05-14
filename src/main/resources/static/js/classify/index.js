@@ -8,99 +8,18 @@ var typeStr = ""
 $(function(){
     $('.aboutMe_00').attr("class", "nav-item start active open");
 
-    $('.aboutMe_01').attr("class", "nav-item start active open");
-    $('.ui.dropdown').dropdown();
+    $('.aboutMe_02').attr("class", "nav-item start active open");
+    $('#compoentType').dropdown();
     showDate();
     //进入页面时加载第一页数据 并初始化分页控件
     queryData(opts.current_page + 1,opts.items_per_page)
 
     $('#submitEditBtn').on('click',function(){
-        submitFunction('/compoent/change')
+        submitFunction('/classify/change')
     })
 
     $('#submitBtn').on('click',function(){
-        submitFunction('/compoent/insert')
-    })
-
-    $("#addCompoentClassify").on('change',function () {
-
-        $.ajax({
-            type: 'POST',
-            url: "/compoent/queryType",
-            data:{
-                classify:$("#addCompoentClassify").val(),
-            },
-            success:function(data){
-                if(data.code=="0000"){
-                    var menuSelect = $("#addCompoentType")
-                    // alert(data.code);
-                    // alert(data.data[0].cMenuName);
-                    menuSelect.empty();
-                    var lists = data.data;
-                    for(var i in lists){
-                        var option=$("<option>").val(lists[i].id).text(lists[i].typeName);
-                        menuSelect.append(option);
-                    }
-                }
-            }
-
-
-        });
-    })
-
-    $("#editCompoentClassify").on('change',function () {
-
-        $.ajax({
-            type: 'POST',
-            url: "/compoent/queryType",
-            data:{
-                classify:$("#editCompoentClassify").val(),
-            },
-            success:function(data){
-                if(data.code=="0000"){
-                    var menuSelect = $("#editCompoentType")
-                    // alert(data.code);
-                    // alert(data.data[0].cMenuName);
-                    menuSelect.empty();
-                    var lists = data.data;
-                    for(var i in lists){
-                        var option=$("<option>").val(lists[i].id).text(lists[i].typeName);
-                        menuSelect.append(option);
-                    }
-                }
-            }
-
-
-        });
-    })
-
-    $("#compoentClassify").on('change',function () {
-
-        $.ajax({
-            type: 'POST',
-            url: "/compoent/queryType",
-            data:{
-                classify:$("#compoentClassify").val(),
-            },
-            success:function(data){
-                if(data.code=="0000"){
-                    var menuSelect = $("#compoentType")
-                    // alert(data.code);
-                    // alert(data.data[0].cMenuName);
-                    menuSelect.empty();
-                    var lists = data.data;
-                    var oneId = ""
-                    for(var i in lists){
-                        var option=$("<option>").val(lists[i].id).text(lists[i].typeName);
-                        menuSelect.append(option);
-                    }
-
-
-                }
-            }
-
-
-        });
+        submitFunction('/classify/insert')
     })
 })
 
@@ -154,7 +73,7 @@ var showDate= function(){
 //
 var queryData = function(page,size){
     typeStr = $("#compoentType").val()
-    var url = '/compoent/data'
+    var url = '/classify/list'
     $.ajax({
         url: url,
         type: 'post',
@@ -163,7 +82,6 @@ var queryData = function(page,size){
             // 需要传到后台的值，可带参进行分页
             name:$("#compoentName").val(),
             type:typeStr,
-            classify:$("#compoentClassify").val(),
             pageNumber: page,
             pageSize: size
         },
@@ -175,10 +93,7 @@ var queryData = function(page,size){
                 var content = data.data.list
                 for (i in content){
                     html += '<tr>'
-                    html += ('<td nowrap="nowrap">'+content[i].name+'</td>')
-                    html += ('<td nowrap="nowrap">'+content[i].type+'</td>')
-                    html += ('<td nowrap="nowrap">'+content[i].introduce+'</td>')
-                    html += ('<td nowrap="nowrap">'+content[i].numbers+'</td>')
+                    html += ('<td nowrap="nowrap">'+content[i].typeName+'</td>')
                     html += ('<td nowrap="nowrap">')
                     html += ('<div class="ui primary button" onclick="delate(\''+content[i].id+'\')">删除</div>')
                     html += ('<div class="ui primary button" onclick="edit(\''+content[i].id+'\')">修改</div>')
@@ -200,9 +115,9 @@ var queryData = function(page,size){
 
 var edit = function(id){
 
-    $("#edit").load('demo_ajax_load.txt');
+    // $("#edit").load('demo_ajax_load.txt');
 
-    var url ="/compoent/findOne/" + id;
+    var url ="/classify/findOne/" + id;
     $.ajax({
         url:url,
         type: 'post',
@@ -218,11 +133,7 @@ var edit = function(id){
                 var result = data.data;
                 for(var i in result){
                     $("#programId").val(result[i].id),
-                        $('#editCompoentType').dropdown('set selected',result[i].type);
-                        $('#editCompoentClassify').dropdown('set selected',result[i].classify);
-                        $("#editCompoentName").val(result[i].name),
-                            $("#editCompoentNumber").val(result[i].numbers),
-                        $("#editIntroduce").val(result[i].introduce)
+                        $("#editCompoentName").val(result[i].typeName)
                 }
 
             }else {
@@ -233,7 +144,7 @@ var edit = function(id){
 }
 
 var delate = function(id){
-    var url ="/compoent/delete/"+id
+    var url ="/classify/delete/"+id
     $.ajax({
         url: url,
         type: 'post',
@@ -259,17 +170,13 @@ var addBtn = function () {
 
 var submitFunction = function (url) {
 
-    if(url =="/compoent/insert"){
+    if(url =="/classify/insert"){
         $.ajax({
             url: url,
             type: 'post',
             dataType: 'json',
             data: {
-                type:$("#addCompoentType").val(),
-                classify:$("#addCompoentClassify").val(),
-                name:$("#addCompoentName").val(),
-                numbers:$("#addCompoentNumber").val(),
-                introduce:$("#addIntroduce").val(),
+                typeName:$("#addCompoentName").val(),
             },
             success: function (data) {
                 if(data.code==0000){
@@ -291,11 +198,7 @@ var submitFunction = function (url) {
             dataType: 'json',
             data: {
                 id:$("#programId").val(),
-                classify:$("#editCompoentClassify").val(),
-                type:$("#editCompoentType").val(),
-                name:$("#editCompoentName").val(),
-                numbers:$("#editCompoentNumber").val(),
-                introduce:$("#editIntroduce").val()
+                typeName:$("#editCompoentName").val(),
             },
             success: function (data) {
                 if(data.code==0000){
@@ -303,7 +206,6 @@ var submitFunction = function (url) {
                         .modal('hide')
                     ;
                     cautionModal("操作成功")
-
                     $("#editForm").form('clear');
                     queryData( opts.current_page +1,opts.items_per_page)
                 }

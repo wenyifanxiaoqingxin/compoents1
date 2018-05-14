@@ -1,0 +1,17 @@
+
+#创建类别表
+CREATE TABLE `test`.`compoent_type` (
+  `id` VARCHAR(45) NOT NULL COMMENT 'id',
+  `type_name` VARCHAR(100) NULL COMMENT '分类名称',
+  `type_parent_id` VARCHAR(45) NULL COMMENT '父节点id',
+  `extr1` VARCHAR(45) NULL COMMENT '预留字段1',
+  `extr2` VARCHAR(45) NULL COMMENT '预留字段2',
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC));
+
+
+
+  ALTER TABLE `test`.`component`
+  ADD COLUMN `classify` VARCHAR(45) NULL COMMENT '类别' AFTER `introduce`,
+  ADD COLUMN `numbers` INT NULL COMMENT '数量' AFTER `classify`,
+  ADD COLUMN `extr1` VARCHAR(45) NULL AFTER `numbers`;

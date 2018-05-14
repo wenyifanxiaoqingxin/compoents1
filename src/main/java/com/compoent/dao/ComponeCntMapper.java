@@ -1,7 +1,7 @@
-package com.compoent.compoent.dao;
+package com.compoent.dao;
 
-import com.compoent.compoent.entity.ComponeCnt;
-import com.compoent.compoent.entity.ComponeCntExample;
+import com.compoent.entity.ComponeCnt;
+import com.compoent.entity.ComponeCntExample;
 import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;

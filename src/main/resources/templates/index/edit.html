@@ -1,17 +1,44 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <div th:fragment="edit" id="editModel">
-    <div class="ui mini modal caution" id="edit" style="margin-bottom: 20%;width: 600px;height: 400px;overflow: hidden">
+    <div class="ui mini modal caution" id="edit" style="margin-bottom: 20%;width: 600px;height: 500px;overflow: hidden">
         <div class="header">
             修改元器件
         </div>
-        <div class="sizer content_header" style="margin-left: 5%;margin-right: 5%;">
+        <div class="sizer content_header" style="margin-left: 5%;margin-right: 5%;margin-top:5%;">
         <form class="ui form" id="addForm">
-            <input id="programId" type="hidden"/>
-            <div class="field" style="text-align: left;">
-                <label style="font-size: small">元器件类型:</label>
-                <input placeholder="元器件类型" type="text" name="type" id="editCompoentType" />
+            <div class="two fields">
+                <div class="field" style="text-align: left;">
+                    <label style="font-size: small">元器件分类:</label>
+                    <div class="field">
+                        <select class="ui search selection  dropdown" id="editCompoentClassify">
+                            <div th:each="arrayS:${classifyList}">
+                                <option th:text="${arrayS.typeName}" th:value="${arrayS.id}"></option>
+                            </div>
+                        </select>
+
+                    </div>
+                </div>
+                <div class="field" style="text-align: left;">
+                    <label style="font-size: small">元器件种类:</label>
+                    <div class="field">
+                        <select class="ui search selection  dropdown" id="editCompoentType">
+                            <div th:each="types:${typeList}">
+                                <option th:text="${types.typeName}" th:value="${types.id}"></option>
+                            </div>
+                        </select>
+
+                    </div>
+                </div>
+
 
             </div>
+
+
+            <div class="field" style="text-align: left;">
+                <label style="font-size: small">元器件数目:</label>
+                <input placeholder="元器件数目" type="number" name="numbers" id="editCompoentNumber" />
+            </div>
+            <input id="programId" type="hidden"/>
             <div class="field" style="text-align: left;">
                 <label style="font-size: small">元器件名称：</label>
                 <input placeholder="元器件名称" type="text" name="name" id="editCompoentName" />
