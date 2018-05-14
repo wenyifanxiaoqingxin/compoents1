@@ -1,6 +1,5 @@
 package com.compoent.Service;
 
-import com.compoent.entity.CompoentType;
 import com.compoent.entity.ComponentType;
 
 import java.util.List;
