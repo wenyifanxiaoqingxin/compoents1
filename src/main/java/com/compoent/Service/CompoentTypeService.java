@@ -1,6 +1,6 @@
 package com.compoent.Service;
 
-import com.compoent.entity.CompoentType;
+import com.compoent.entity.ComponentType;
 
 import java.util.List;
 
@@ -10,14 +10,14 @@ import java.util.List;
 public interface CompoentTypeService {
 
 
-    List<CompoentType> queryList(String parentId);
+    List<ComponentType> queryList(String parentId);
 
 
-    int insertOne(CompoentType CompoentType);
+    int insertOne(ComponentType CompoentType);
 
-    List<CompoentType> queryOne(String id);
+    List<ComponentType> queryOne(String id);
 
     int deleteOne(String id);
 
-    int updataOne(CompoentType CompoentType);
+    int updataOne(ComponentType CompoentType);
 }

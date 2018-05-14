@@ -11,6 +11,16 @@
     <result column="extr1" jdbcType="VARCHAR" property="extr1" />
     <result column="extr2" jdbcType="VARCHAR" property="extr2" />
   </resultMap>
+  <resultMap id="typeResultMap" type="com.compoent.entity.ComponentType">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="type_name" jdbcType="VARCHAR" property="typeName" />
+    <result column="type_parent_id" jdbcType="VARCHAR" property="typeParentId" />
+    <result column="extr1" jdbcType="VARCHAR" property="extr1" />
+    <result column="extr2" jdbcType="VARCHAR" property="extr2" />
+  </resultMap>
   <sql id="Example_Where_Clause">
     <!--
       WARNING - @mbg.generated
@@ -57,5 +67,9 @@
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
+  </select>
+  <select id="selectTypeList" parameterType="java.lang.String" resultMap="typeResultMap">
+
+    SELECT * from compoent_type where type_parent_id =#{id,jdbcType=VARCHAR}
   </select>
 </mapper>

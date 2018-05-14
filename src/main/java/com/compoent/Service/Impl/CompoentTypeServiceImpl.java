@@ -1,9 +1,9 @@
 package com.compoent.Service.Impl;
 
 import com.compoent.Service.CompoentTypeService;
-import com.compoent.dao.CompoentTypeMapper;
-import com.compoent.entity.CompoentType;
+import com.compoent.dao.ComponentTypeMapper;
 import com.compoent.entity.ComponeCntExample;
+import com.compoent.entity.ComponentType;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,35 +17,35 @@ import java.util.UUID;
 @AllArgsConstructor
 public class CompoentTypeServiceImpl implements CompoentTypeService {
 
-        private CompoentTypeMapper compoentTypeMapper;
+        private ComponentTypeMapper componentTypeMapper;
 
     @Override
-    public List<CompoentType> queryList(String parentId) {
-        return compoentTypeMapper.selectTypeList(parentId);
+    public List<ComponentType> queryList(String parentId) {
+        return componentTypeMapper.selectTypeList(parentId);
     }
 
     @Override
-    public int insertOne(CompoentType compoentType) {
+    public int insertOne(ComponentType compoentType) {
         compoentType.setId(UUID.randomUUID().toString());
-        return compoentTypeMapper.insert(compoentType);
+        return componentTypeMapper.insert(compoentType);
     }
 
     @Override
-    public List<CompoentType> queryOne(String id) {
+    public List<ComponentType> queryOne(String id) {
         ComponeCntExample componeCntExample = new ComponeCntExample();
 
         componeCntExample.createCriteria().andIdEqualTo(id);
-        List<CompoentType> componeCnts = compoentTypeMapper.selectByExample(componeCntExample);
+        List<ComponentType> componeCnts = componentTypeMapper.selectByExample(componeCntExample);
         return componeCnts;
     }
 
     @Override
     public int deleteOne(String id) {
-        return compoentTypeMapper.deleteByPrimaryKey(id);
+        return componentTypeMapper.deleteByPrimaryKey(id);
     }
 
     @Override
-    public int updataOne(CompoentType compoentType) {
-        return compoentTypeMapper.updateByPrimaryKeySelective(compoentType);
+    public int updataOne(ComponentType componentType) {
+        return componentTypeMapper.updateByPrimaryKeySelective(componentType);
     }
 }

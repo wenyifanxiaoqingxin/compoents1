@@ -3,7 +3,6 @@ package com.compoent.control;
 import com.compoent.common.ReturnData;
 import com.compoent.Service.CompoentClassifyService;
 import com.compoent.Vo.CompoentVo;
-import com.compoent.entity.CompoentType;
 import com.compoent.entity.ComponentType;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;

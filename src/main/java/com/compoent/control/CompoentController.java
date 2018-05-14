@@ -5,7 +5,6 @@ import com.compoent.Service.CompoentService;
 import com.compoent.Service.CompoentTypeService;
 import com.compoent.Vo.CompoentVo;
 import com.compoent.common.ReturnData;
-import com.compoent.entity.CompoentType;
 import com.compoent.entity.ComponeCnt;
 import com.compoent.entity.ComponentType;
 import com.github.pagehelper.PageHelper;
@@ -39,7 +38,7 @@ public class CompoentController {
     public String html(Model model){
         List<ComponentType> compoentClassifys = new ArrayList<>();
          compoentClassifys = compoentClassifyService.queryList();
-        List<CompoentType> compoentTypes = compoentTypeService.queryList(compoentClassifys.get(0).getId());
+        List<ComponentType> compoentTypes = compoentTypeService.queryList(compoentClassifys.get(0).getId());
         model.addAttribute("classifyList",compoentClassifys);
         model.addAttribute("typeList",compoentTypes);
 

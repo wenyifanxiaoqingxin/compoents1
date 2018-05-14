@@ -1,12 +1,10 @@
 package com.compoent.Service.Impl;
 
 import com.compoent.Service.CompoentClassifyService;
-import com.compoent.dao.CompoentTypeMapper;
 import com.compoent.dao.ComponentTypeMapper;
-import com.compoent.entity.CompoentType;
-import com.compoent.entity.CompoentTypeExample;
 import com.compoent.entity.ComponeCntExample;
 import com.compoent.entity.ComponentType;
+import com.compoent.entity.ComponentTypeExample;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -25,8 +23,8 @@ public class CompoentClassifyServiceImpl implements CompoentClassifyService {
     @Override
     public List<ComponentType> queryList() {
 
-        CompoentTypeExample compoentTypeExample = new CompoentTypeExample();
-        CompoentTypeExample.Criteria criteria = compoentTypeExample.createCriteria();
+        ComponentTypeExample compoentTypeExample = new ComponentTypeExample();
+        ComponentTypeExample.Criteria criteria = compoentTypeExample.createCriteria();
         criteria.andTypeParentIdIsNull();
 
         return componentTypeMapper.selectByExample(compoentTypeExample);
@@ -59,8 +57,8 @@ public class CompoentClassifyServiceImpl implements CompoentClassifyService {
     @Override
     public List<ComponentType> queryTypeList(String parentId) {
 
-        CompoentTypeExample compoentTypeExample = new CompoentTypeExample();
-        CompoentTypeExample.Criteria criteria = compoentTypeExample.createCriteria();
+        ComponentTypeExample compoentTypeExample = new ComponentTypeExample();
+        ComponentTypeExample.Criteria criteria = compoentTypeExample.createCriteria();
         criteria.andTypeParentIdEqualTo(parentId);
 
         return componentTypeMapper.selectByExample(compoentTypeExample);

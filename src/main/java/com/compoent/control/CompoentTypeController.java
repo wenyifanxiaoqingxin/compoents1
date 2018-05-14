@@ -4,7 +4,6 @@ import com.compoent.Service.CompoentClassifyService;
 import com.compoent.Service.CompoentTypeService;
 import com.compoent.Vo.CompoentVo;
 import com.compoent.common.ReturnData;
-import com.compoent.entity.CompoentType;
 import com.compoent.entity.ComponentType;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -43,9 +42,9 @@ public class CompoentTypeController {
         PageHelper.startPage(Integer.parseInt(compoentVo.getPageNumber()),Integer.parseInt(compoentVo.getPageSize()));
 
         try {
-            List<CompoentType> compoentTypes = new ArrayList<>();
-            compoentTypes = compoentTypeService.queryList(compoentVo.getId());
-            PageInfo<CompoentType> pageInfo = new PageInfo<>(compoentTypes);
+            List<ComponentType> componentTypes = new ArrayList<>();
+            componentTypes = compoentTypeService.queryList(compoentVo.getId());
+            PageInfo<ComponentType> pageInfo = new PageInfo<>(componentTypes);
             returnData.setData(pageInfo);
             returnData.setMessage("查询成功");
             returnData.setCode(ReturnData.RESULT_CODE_0000);
@@ -65,8 +64,8 @@ public class CompoentTypeController {
         ReturnData returnData = new ReturnData();
 
         try {
-            List<CompoentType> componeCnts = compoentTypeService.queryOne(id);
-            returnData.setData(componeCnts);
+            List<ComponentType> componentTypes = compoentTypeService.queryOne(id);
+            returnData.setData(componentTypes);
             returnData.setCode(ReturnData.RESULT_CODE_0000);
             returnData.setMessage("查询成功");
         }catch (Exception e){
@@ -79,10 +78,10 @@ public class CompoentTypeController {
 
     @RequestMapping("/change")
     @ResponseBody
-    public ReturnData changOne(CompoentType componeCnt){
+    public ReturnData changOne(ComponentType componentType){
         ReturnData returnData = new ReturnData();
         try {
-            returnData.setData(compoentTypeService.updataOne(componeCnt));
+            returnData.setData(compoentTypeService.updataOne(componentType));
             returnData.setCode(ReturnData.RESULT_CODE_0000);
             returnData.setMessage("查询成功");
         }catch (Exception e){
@@ -95,10 +94,10 @@ public class CompoentTypeController {
 
     @RequestMapping("/insert")
     @ResponseBody
-    public ReturnData insertOne(CompoentType componeCnt,Model model){
+    public ReturnData insertOne(ComponentType componentType,Model model){
         ReturnData returnData = new ReturnData();
         try {
-            returnData.setData(compoentTypeService.insertOne(componeCnt));
+            returnData.setData(compoentTypeService.insertOne(componentType));
             returnData.setCode(ReturnData.RESULT_CODE_0000);
             returnData.setMessage("查询成功");
         }catch (Exception e){
