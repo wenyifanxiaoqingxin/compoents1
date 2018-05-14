@@ -38,7 +38,7 @@ public class CompoentController {
     public String html(Model model){
         List<ComponentType> compoentClassifys = new ArrayList<>();
          compoentClassifys = compoentClassifyService.queryList();
-        List<ComponentType> compoentTypes = compoentTypeService.queryList(compoentClassifys.get(0).getId());
+        List<ComponentType> compoentTypes = compoentTypeService.queryList("11651410-cce9-48af-8b37-24db81bf9dc9");
         model.addAttribute("classifyList",compoentClassifys);
         model.addAttribute("typeList",compoentTypes);
 
