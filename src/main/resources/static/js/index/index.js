@@ -116,6 +116,9 @@ var queryData = function(page,size){
 }
 
 var edit = function(id){
+
+    $("#edit").load('demo_ajax_load.txt');
+
     var url ="/compoent/findOne/" + id;
     $.ajax({
         url:url,
@@ -274,3 +277,17 @@ var cancleEditBtn = function () {
         .modal('hide')
     ;
 }
+
+var _load=$.fn.load;
+$.fn.extend({
+    load:function(url,param,calbck){
+        //其他操作和处理
+        //..
+        if(url==null||url==""){
+            alert("buxing ")
+            return ;
+        }
+        //此处用apply方法调用原来的load方法，因为load方法属于对象，所以不可直接对象._load（...）
+        return _load.apply(this,[url,param,calbck]);
+    }
+});
