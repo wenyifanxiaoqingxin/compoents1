@@ -5,6 +5,7 @@ import com.compoent.Service.CompoentService;
 import com.compoent.Service.CompoentTypeService;
 import com.compoent.Vo.CompoentVo;
 import com.compoent.common.ReturnData;
+import com.compoent.config.WebSecurityConfig;
 import com.compoent.entity.ComponeCnt;
 import com.compoent.entity.ComponentType;
 import com.github.pagehelper.PageHelper;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,15 +37,27 @@ public class CompoentController {
     @Autowired
     private CompoentClassifyService compoentClassifyService;
     @RequestMapping("/html")
-    public String html(Model model){
+    public String html(Model model, HttpSession session){
         List<ComponentType> compoentClassifys = new ArrayList<>();
          compoentClassifys = compoentClassifyService.queryList();
         List<ComponentType> compoentTypes = compoentTypeService.queryList(compoentClassifys.get(0).getId());
         model.addAttribute("classifyList",compoentClassifys);
         model.addAttribute("typeList",compoentTypes);
-
+        model.addAttribute("username",session.getAttribute(WebSecurityConfig.SESSION_KEY));
         return "/index/index";
     }
+
+    @RequestMapping("/user")
+    public String userhtml(Model model, HttpSession session){
+        List<ComponentType> compoentClassifys = new ArrayList<>();
+        compoentClassifys = compoentClassifyService.queryList();
+        List<ComponentType> compoentTypes = compoentTypeService.queryList(compoentClassifys.get(0).getId());
+        model.addAttribute("classifyList",compoentClassifys);
+        model.addAttribute("typeList",compoentTypes);
+        model.addAttribute("username",session.getAttribute(WebSecurityConfig.SESSION_KEY));
+        return "/user/index";
+    }
+
     @RequestMapping("/data")
     @ResponseBody
     public ReturnData getData(CompoentVo compoentVo){

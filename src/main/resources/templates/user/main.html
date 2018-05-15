@@ -74,7 +74,7 @@
                                     <div class="field" style="text-align: right;">
                                         <label style="font-size: small">&nbsp;</label>
                                         <div class="ui primary button" id="addSubmit" onclick="queryBtn()">查询</div>
-                                        <div class="ui primary button" id="addSubmitBtn" onclick="addBtn()">新增</div>
+                                        <div class="ui primary button" id="addSubmitBtn" onclick="addBtn()" style="display: none">新增</div>
 
                                     </div>
                                 </div>
@@ -90,7 +90,7 @@
                                     <!--</th>-->
                                     <th >简介</th>
                                     <th >剩余数目</th>
-                                    <th >操作</th>
+                                    <!--<th style="display: none">操作</th>-->
                                 </tr>
                                 </thead>
 
@@ -114,9 +114,7 @@
             </div>
         </div>
     </div>
-    <div th:include="index/add :: add" class="hiddenTv"></div>
-    <div th:include="index/edit :: edit" class="hiddenTv"></div>
-    <script th:src="@{/js/index/index.js}"></script>
+    <script th:src="@{/js/user/index.js}"></script>
     <script src="../js/jquery.pagination.js"></script>
 
 </div>

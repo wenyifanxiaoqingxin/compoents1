@@ -1,30 +1,49 @@
 $(function()
 {
-    var username = $("#username").val();
-    var password = $("#password").val();
+    // var username = $("#username").val();
+    // var password = $("#password").val();
     $("#ajaxLogin").click(function() {
         var  password= $("#password").val();
-        var regId = /(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$)/;
-
-        var re =/^1[34578]\d{9}$/;
-        var codereg =/^\d{6}$/;
-        // if(!regId.test(password)){
+        // var regId = /(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$)/;
         //
-        //     alert("身份证格式错误");
-        // }
-        // if(!CheckPassWord(password)){
-        //     alert("密码格式错误");
-        // }
-        $.post("/ajaxLogin", {
-            "username" : $("#username").val(),
-            "password" : password
-        }, function(result) {
-            if (result.status == 200) {
-                location.href = "index/index";
-            } else {
-                $("#erro").html(result.message);
+        // var re =/^1[34578]\d{9}$/;
+        // var codereg =/^\d{6}$/;
+        // // if(!regId.test(password)){
+        // //
+        // //     alert("身份证格式错误");
+        // // }
+        // // if(!CheckPassWord(password)){
+        // //     alert("密码格式错误");
+        // // }
+        $.ajax({
+            type:"post",
+            url:"/loginPost",
+            data:{
+                userName: $("#username").val(),
+                password:$("#password").val(),
+                roles:$("#changeUser").val()
+            },
+            success:function (data) {
+                if(data.code=="0000"){
+                    location.href = '/'
+                }else{
+                    $("#loginTip").text(data.message);
+                    $("#loginTip").show();
+                }
+                // if(data == 1){
+                //     $("#loginTip").hide();
+                //     $("#loginForm").submit();
+                // }else if(data == 2 || data == 3){    //如果选择了impCompany，但是用户却属于本系统，那么返回3
+                //     $("#loginTip").hide();
+                //     $("#loginForm").submit();
+                // }else{
+                //     $("#loginTip").show();
+                // }
+
             }
-        });
+
+        })
+
     });
 });
 

@@ -179,10 +179,10 @@ var queryData = function(page,size){
                     // html += ('<td nowrap="nowrap">'+content[i].type+'</td>')
                     html += ('<td nowrap="nowrap">'+content[i].introduce+'</td>')
                     html += ('<td nowrap="nowrap">'+content[i].numbers+'</td>')
-                    html += ('<td nowrap="nowrap">')
-                    html += ('<div class="ui primary button" onclick="delate(\''+content[i].id+'\')">删除</div>')
-                    html += ('<div class="ui primary button" onclick="edit(\''+content[i].id+'\')">修改</div>')
-                    html += ('</td>')
+                    // html += ('<td nowrap="nowrap"> s')
+                    // html += ('<div class="ui primary button" onclick="delate(\''+content[i].id+'\')">删除</div>')
+                    // html += ('<div class="ui primary button" onclick="edit(\''+content[i].id+'\')">修改</div>')
+                    // html += ('</td>')
                     html += '</tr>'
                 }
                 $('#content').append(html)
