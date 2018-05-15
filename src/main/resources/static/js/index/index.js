@@ -177,7 +177,7 @@ var queryData = function(page,size){
                     html += '<tr>'
                     html += ('<td nowrap="nowrap">'+content[i].name+'</td>')
                     // html += ('<td nowrap="nowrap">'+content[i].type+'</td>')
-                    html += ('<td nowrap="nowrap">'+content[i].introduce+'</td>')
+                    // html += ('<td nowrap="nowrap">'+content[i].introduce+'</td>')
                     html += ('<td nowrap="nowrap">'+content[i].numbers+'</td>')
                     html += ('<td nowrap="nowrap">')
                     html += ('<div class="ui primary button" onclick="delate(\''+content[i].id+'\')">删除</div>')

@@ -6,9 +6,9 @@ var opts = {
 };
 var typeStr = ""
 $(function(){
-    $('.aboutMe_00').attr("class", "nav-item start active open");
+    $('.userIndex_00').attr("class", "nav-item start active open");
 
-    $('.aboutMe_01').attr("class", "nav-item start active open");
+    $('.userIndex_01').attr("class", "nav-item start active open");
     $('.ui.dropdown').dropdown();
     showDate();
     //进入页面时加载第一页数据 并初始化分页控件
@@ -177,7 +177,7 @@ var queryData = function(page,size){
                     html += '<tr>'
                     html += ('<td nowrap="nowrap">'+content[i].name+'</td>')
                     // html += ('<td nowrap="nowrap">'+content[i].type+'</td>')
-                    html += ('<td nowrap="nowrap">'+content[i].introduce+'</td>')
+                    // html += ('<td nowrap="nowrap">'+content[i].introduce+'</td>')
                     html += ('<td nowrap="nowrap">'+content[i].numbers+'</td>')
                     // html += ('<td nowrap="nowrap"> s')
                     // html += ('<div class="ui primary button" onclick="delate(\''+content[i].id+'\')">删除</div>')
